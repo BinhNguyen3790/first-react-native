@@ -1,9 +1,14 @@
 import React from "react";
-import { StyleSheet, Text,View } from "react-native";
-const Category = () => {
+import { StyleSheet, Text, View } from "react-native";
+
+type CategoryProps = {
+  title: string
+}
+
+const Category = ({ title }: CategoryProps) => {
   return (
     <View style={styles.container}>
-      <Text>Danh mục</Text>
+      <Text>{title}</Text>
       <Text>Xem thêm</Text>
     </View>
   )
@@ -12,6 +17,7 @@ const Category = () => {
 const styles = StyleSheet.create({
   container: {
     marginTop: 30,
+    marginBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start'
