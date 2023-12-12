@@ -142,9 +142,11 @@
 
 import React from 'react';
 import HomeScreen from './screens/home/HomeScreen';
+import LoginScreen from './screens/login/LoginScreen';
 const App = () => {
   return (
-    <HomeScreen/>
+    // <HomeScreen/>
+    <LoginScreen />
   )
 }
 export default App;
