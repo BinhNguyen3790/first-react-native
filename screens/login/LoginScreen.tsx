@@ -3,7 +3,37 @@ import { Alert, Image, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, Tou
 import Icon from 'react-native-vector-icons/AntDesign';
 import CheckBox from '@react-native-community/checkbox';
 const LoginScreen = () => {
-  const [toggleCheckBox, setToggleCheckBox] = useState(false)
+  const [remember, setRemember] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [checkEmail, setCheckEmail] = useState(false);
+  const [checkPassword, setCheckPassword] = useState(false);
+  const onSubmit = () => {
+    let dataLogin = {
+      _email: email,
+      _password: password,
+      _remember: remember
+    }
+
+    const regexEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    console.log(regexEmail.test(email));
+
+    if (regexEmail.test(email)) {
+      setCheckEmail(false);
+    } else {
+      setCheckEmail(true);
+    }
+
+    if (checkPassword === true && password !== '') {
+      setCheckPassword(false);
+    } else {
+      setCheckPassword(true);
+    }
+
+    if (regexEmail.test(email) && password !== '') {
+      console.log(dataLogin);
+    }
+  }
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'#fff'} barStyle={"dark-content"}></StatusBar>
@@ -12,7 +42,7 @@ const LoginScreen = () => {
         <Text>By signing in you are agreeing</Text>
         <View style={styles.textPolicy}>
           <Text>our </Text>
-          <TouchableOpacity onPress={() => Alert.alert("hello!")}>
+          <TouchableOpacity >
             <Text style={styles.textBlue}>Term and privacy policy</Text>
           </TouchableOpacity>
         </View>
@@ -20,11 +50,13 @@ const LoginScreen = () => {
       <View style={styles.form}>
         <View style={styles.formGroup}>
           <Icon style={styles.formIcon} name="mail" size={30} />
-          <TextInput style={styles.formInput} placeholder="Email Address"></TextInput>
+          <TextInput style={styles.formInput} placeholder="Email Address" onChangeText={(e) => setEmail(e)}></TextInput>
+          {checkEmail ? <Text style={styles.formError}>Email incorrect!</Text> : ''}
         </View>
         <View style={styles.formGroup}>
           <Icon style={styles.formIcon} name="lock" size={30} />
-          <TextInput style={styles.formInput} placeholder="Password" secureTextEntry={true}></TextInput>
+          <TextInput style={styles.formInput} placeholder="Password" secureTextEntry={true} onChangeText={(e) => setPassword(e)}></TextInput>
+          {checkPassword ? <Text style={styles.formError}>Password incorrect!</Text> : ''}
         </View>
         <View style={styles.formGroup}>
           <View style={styles.formGroupFlexParent}>
@@ -32,8 +64,8 @@ const LoginScreen = () => {
               <CheckBox
                 style={styles.formCheck}
                 disabled={false}
-                value={toggleCheckBox}
-                onValueChange={() => setToggleCheckBox(!toggleCheckBox)}
+                value={remember}
+                onValueChange={() => setRemember(!remember)}
               />
               <Text>Remember me</Text>
             </View>
@@ -43,7 +75,7 @@ const LoginScreen = () => {
           </View>
         </View>
         <View style={styles.formGroup}>
-          <TouchableOpacity onPress={() => Alert.alert("hello!")}>
+          <TouchableOpacity onPress={onSubmit}>
             <Text style={styles.formButton}>Login</Text>
           </TouchableOpacity>
         </View>
@@ -82,7 +114,6 @@ const styles = StyleSheet.create({
   form: {
     marginTop: 50,
     paddingHorizontal: 30,
-    flex: 1
   },
   formGroup: {
     position: "relative",
@@ -127,9 +158,14 @@ const styles = StyleSheet.create({
     left: 0,
     top: 9,
   },
-  footer: {},
+  formError: {
+    color: "red"
+  },
+  footer: {
+    marginTop: 50
+  },
   footerBg: {
-    width: "100%"
+    width: "100%",
   }
 })
 
