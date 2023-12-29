@@ -10,7 +10,6 @@ const SectionListView = () => {
   return (
     <>
       <Text style={styles.heading}>Hello</Text>
-
       <SectionList
         sections={data}
         renderItem={({ item }) =>
