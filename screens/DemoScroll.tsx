@@ -21,6 +21,22 @@ const DemoScroll = () => {
   return (
     <>
       <Text style={styles.heading}>hello scrollview, flatList</Text>
+      <View style={styles.container}>
+        <View style={styles.item}>
+          <Text style={styles.text}>Image Item</Text>
+          <Image style={styles.img} source={require("../assets/imgs/logo.png")} />
+        </View><View style={styles.item}>
+          <Text style={styles.text}>Image Item</Text>
+          <Image style={styles.img} source={require("../assets/imgs/logo.png")} />
+        </View><View style={styles.item}>
+          <Text style={styles.text}>Image Item</Text>
+          <Image style={styles.img} source={require("../assets/imgs/logo.png")} />
+        </View>
+        <View style={styles.item}>
+          <Text style={styles.text}>Image Item</Text>
+          <Image style={styles.img} source={require("../assets/imgs/logo.png")} />
+        </View>
+      </View>
       {/* <ScrollView horizontal>
           <View>
             <Text>Image Item</Text>
@@ -71,17 +87,31 @@ const DemoScroll = () => {
             <Image source={require("../assets/imgs/logo.png")} />
           </View>
         </ScrollView> */}
-      <FlatList data={fakeData} renderItem={({ item }) =>
+      {/* <FlatList data={fakeData} renderItem={({ item }) =>
         <View>
           <Text>{item.name}</Text>
           <Image source={item.image} />
         </View>
-      } />
+      } /> */}
     </>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    flexWrap: "wrap"
+  },
+  item: {
+    width: "50%",
+    padding: 10
+  },
+  text: {
+    textAlign: "center"
+  },
+  img: {
+    width: "100%"
+  },
   heading: {
     textAlign: "center",
     padding: 10,
