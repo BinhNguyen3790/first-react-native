@@ -21,7 +21,7 @@ const DemoScroll = () => {
   return (
     <>
       <Text style={styles.heading}>hello scrollview, flatList</Text>
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <View style={styles.item}>
           <Text style={styles.text}>Image Item</Text>
           <Image style={styles.img} source={require("../assets/imgs/logo.png")} />
@@ -36,7 +36,7 @@ const DemoScroll = () => {
           <Text style={styles.text}>Image Item</Text>
           <Image style={styles.img} source={require("../assets/imgs/logo.png")} />
         </View>
-      </View>
+      </View> */}
       {/* <ScrollView horizontal>
           <View>
             <Text>Image Item</Text>
@@ -87,12 +87,12 @@ const DemoScroll = () => {
             <Image source={require("../assets/imgs/logo.png")} />
           </View>
         </ScrollView> */}
-      {/* <FlatList data={fakeData} renderItem={({ item }) =>
+      <FlatList data={fakeData} renderItem={({ item }) =>
         <View>
           <Text>{item.name}</Text>
           <Image source={item.image} />
         </View>
-      } /> */}
+      } />
     </>
   )
 }
