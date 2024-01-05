@@ -4,13 +4,42 @@ import LoginScreen from './screens/login/LoginScreen';
 import DemoScroll from './screens/DemoScroll';
 import SectionListView from './screens/SectionListView';
 import ListCategory from './screens/home/ListCategory';
+import { NavigationContainer } from '@react-navigation/native';
+import { Text, View } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Home = () => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+    </View>
+  )
+}
+
+const Contact = () => {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Contact Screen</Text>
+    </View>
+  )
+}
+
+const Stack = createNativeStackNavigator();
+
+
 const App = () => {
   return (
 
-    <HomeScreen />
+    // <HomeScreen />
     // <LoginScreen />
     // <DemoScroll />
     // <SectionListView />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home}></Stack.Screen>
+        <Stack.Screen name="Contact" component={Contact}></Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 export default App;
