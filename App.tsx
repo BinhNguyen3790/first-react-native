@@ -5,13 +5,14 @@ import DemoScroll from './screens/DemoScroll';
 import SectionListView from './screens/SectionListView';
 import ListCategory from './screens/home/ListCategory';
 import { NavigationContainer } from '@react-navigation/native';
-import { Text, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Home = () => {
+const Home = ({navigation}:any) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Home Screen</Text>
+      <Button title='change page' onPress={()=>navigation.navigate("Contact")}/>
     </View>
   )
 }
