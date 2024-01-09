@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   itemImg: {
     borderColor: "black",
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 10,
     width: '100%'
   }

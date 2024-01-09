@@ -8,7 +8,7 @@ type CategoryProps = {
 const Category = ({ title }: CategoryProps) => {
   return (
     <View style={styles.container}>
-      <Text>{title}</Text>
+      <Text style={styles.title}>{title}</Text>
       <Text>Xem thêm</Text>
     </View>
   )
@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start'
+  },
+  title: {
+    color: "red",
+    fontWeight: 'bold',
   }
 })
 export default Category;

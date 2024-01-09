@@ -7,8 +7,9 @@ import ListCategory from './screens/home/ListCategory';
 import { NavigationContainer } from '@react-navigation/native';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
 import Icon from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Home = ({ navigation }: any) => {
   return (
@@ -30,13 +31,16 @@ const Contact = ({ route, navigation }: any) => {
         <Icon name="bells" size={30} />
       </View>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Contact Screen nme: {name}</Text>
+        <Text>Welcome: {name}</Text>
+        <Text>Contact Screen me: {obj.name}</Text>
+        <Text>Price: {obj.price}</Text>
       </View>
     </>
   )
 }
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 
 const App = () => {
@@ -47,10 +51,37 @@ const App = () => {
     // <DemoScroll />
     // <SectionListView />
     <NavigationContainer>
-      <Stack.Navigator>
+      {/* <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}></Stack.Screen>
         <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }}></Stack.Screen>
-      </Stack.Navigator>
+      </Stack.Navigator> */}
+      <Tab.Navigator screenOptions={
+        ({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName: any;
+
+            if (route.name === 'Home') {
+              iconName = focused
+                ? 'home'
+                : 'home-outline';
+            } else if (route.name === 'Login') {
+              iconName = focused ? 'enter' : 'enter-outline';
+            } else if (route.name === 'List') {
+              iconName = focused ? 'heart-dislike-circle' : 'heart-dislike-circle-outline';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+          headerShown: false
+        })
+      }>
+        <Tab.Screen name="Home" component={HomeScreen}></Tab.Screen>
+        <Tab.Screen name="Login" component={LoginScreen}></Tab.Screen>
+        <Tab.Screen name="List" component={SectionListView}></Tab.Screen>
+      </Tab.Navigator>
     </NavigationContainer>
   )
 }

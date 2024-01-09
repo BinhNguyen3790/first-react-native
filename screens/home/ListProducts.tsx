@@ -4,35 +4,40 @@ import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 const ListProducts = () => {
   const fakeData = [
     {
-      id: 1, image: require("../../assets/imgs/pic_list_01.png")
+      id: 1, image: require("../../assets/imgs/pic_girl.jpg")
     },
     {
-      id: 2, image: require("../../assets/imgs/pic_list_02.png")
+      id: 2, image: require("../../assets/imgs/pic_girl.jpg")
     },
     {
-      id: 3, image: require("../../assets/imgs/pic_list_03.png")
+      id: 3, image: require("../../assets/imgs/pic_girl.jpg")
     },
     {
-      id: 4, image: require("../../assets/imgs/pic_list_04.png")
+      id: 4, image: require("../../assets/imgs/pic_girl.jpg")
     },
     {
-      id: 5, image: require("../../assets/imgs/pic_list_01.png")
+      id: 5, image: require("../../assets/imgs/pic_girl.jpg")
     },
     {
-      id: 6, image: require("../../assets/imgs/pic_list_02.png")
+      id: 6, image: require("../../assets/imgs/pic_girl.jpg")
     },
     {
-      id: 7, image: require("../../assets/imgs/pic_list_03.png")
+      id: 7, image: require("../../assets/imgs/pic_girl.jpg")
     },
     {
-      id: 8, image: require("../../assets/imgs/pic_list_04.png")
+      id: 8, image: require("../../assets/imgs/pic_girl.jpg")
     },
   ]
   return (
     <>
       <Category title="Danh Mục 2" />
       <FlatList scrollEnabled={false} numColumns={2} columnWrapperStyle={styles.container} data={fakeData} renderItem={({ item }) =>
-        <View style={styles.item}><View style={styles.content}><View style={styles.text}></View></View></View>
+        <View style={styles.item}>
+          <View style={styles.content}>
+            <Image style={styles.itemImg} source={item.image} />
+            <View style={styles.text}></View>
+          </View>
+        </View>
       } />
     </>
   )
@@ -53,9 +58,13 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     height: "100%",
-    backgroundColor: "red",
-    justifyContent: 'flex-end',
+    // backgroundColor: "red",
+    // justifyContent: 'flex-end',
     position: "relative",
+  },
+  itemImg: {
+    width: "100%",
+    height: 150
   },
   text: {
     backgroundColor: "black",
