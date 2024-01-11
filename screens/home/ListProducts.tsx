@@ -39,7 +39,9 @@ const ListProducts = () => {
   }
 
   useEffect(() => {
+
     getApi();
+  
   }, [])
 
   return (
