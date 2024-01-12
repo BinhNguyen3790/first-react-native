@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Category from '../components/Category'
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, StyleSheet, Text, View } from "react-native";
+import Waiting from "../components/Waiting";
 const ListProducts = () => {
   // const fakeData = [
   //   {
@@ -31,30 +32,47 @@ const ListProducts = () => {
 
   const [games, setGames] = useState([]);
 
-  const getApi = () => {
-    return fetch("https://60b98fee80400f00177b68e5.mockapi.io/api/games")
-      .then((res) => res.json())
-      .then((data) => setGames(data))
-      .catch(err => console.log(err))
+  // const getApi = () => {
+  //   return fetch("https://60b98fee80400f00177b68e5.mockapi.io/api/games")
+  //     .then((res) => res.json())
+  //     .then((data) => setGames(data))
+  //     .catch(err => console.log(err))
+  // }
+
+  const [loading, setLoading] = useState(true);
+
+  const getApi = async () => {
+    try {
+      const respone = await fetch("https://60b98fee80400f00177b68e5.mockapi.io/api/games");
+      const data = await respone.json();
+      setGames(data);
+    } catch (error) {
+      console.log(error);
+    }
+    finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
 
     getApi();
-  
+
   }, [])
 
   return (
     <>
       <Category title="Danh Mục 2" />
-      <FlatList scrollEnabled={false} numColumns={2} columnWrapperStyle={styles.container} data={games} renderItem={({ item }: any) =>
-        <View style={styles.item}>
-          <View style={styles.content}>
-            <Image style={styles.itemImg} source={{ uri: item.avatar }} />
-            <View style={styles.text}><Text style={styles.textTxt}>{item.name}</Text></View>
+      {loading ? (<Waiting />) : (
+        <FlatList scrollEnabled={false} numColumns={2} columnWrapperStyle={styles.container} data={games} renderItem={({ item }: any) =>
+          <View style={styles.item}>
+            <View style={styles.content}>
+              <Image style={styles.itemImg} source={{ uri: item.avatar }} />
+              <View style={styles.text}><Text style={styles.textTxt}>{item.name}</Text></View>
+            </View>
           </View>
-        </View>
-      } />
+        } />
+      )}
     </>
   )
 }
@@ -85,7 +103,7 @@ const styles = StyleSheet.create({
   text: {
     backgroundColor: "black",
     height: 40,
-    flexDirection:"row",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center"
   },
