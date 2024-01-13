@@ -1,5 +1,6 @@
 import React from 'react';
 import HomeScreen from './screens/home/HomeScreen';
+import AccountScreen from './screens/Account';
 import LoginScreen from './screens/login/LoginScreen';
 import DemoScroll from './screens/DemoScroll';
 import SectionListView from './screens/SectionListView';
@@ -68,6 +69,8 @@ const App = () => {
               iconName = focused ? 'enter' : 'enter-outline';
             } else if (route.name === 'List') {
               iconName = focused ? 'heart-dislike-circle' : 'heart-dislike-circle-outline';
+            } else if (route.name === 'Account') {
+              iconName = focused ? 'person-circle' : 'person-circle-outline';
             }
 
             // You can return any component that you like here!
@@ -78,6 +81,7 @@ const App = () => {
           headerShown: false
         })
       }>
+        <Tab.Screen name="Account" component={AccountScreen}></Tab.Screen>
         <Tab.Screen name="Home" component={HomeScreen}></Tab.Screen>
         <Tab.Screen name="Login" component={LoginScreen}></Tab.Screen>
         <Tab.Screen name="List" component={SectionListView}></Tab.Screen>
