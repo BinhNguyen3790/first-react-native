@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const Account = () => {
+const Account = ({ navigation }: any) => {
   return (
     <SafeAreaView>
       <View style={styles.BtnGroup}>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Login')}>
           <Text>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.btn}>
@@ -38,12 +38,12 @@ const styles = StyleSheet.create({
   BtnGroup: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop:30
+    marginTop: 30
   },
   btn: {
     padding: 15,
     backgroundColor: "#27B7C0",
-    borderRadius:10
+    borderRadius: 10
   }
 })
 
