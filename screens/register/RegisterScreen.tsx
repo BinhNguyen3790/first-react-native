@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Image, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
 import CheckBox from '@react-native-community/checkbox';
-const LoginScreen = () => {
+const RegisterScreen = () => {
   const [remember, setRemember] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,7 +37,7 @@ const LoginScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'#fff'} barStyle={"dark-content"}></StatusBar>
-      <Text style={styles.heading}>Login</Text>
+      <Text style={styles.heading}>Register</Text>
       <View style={styles.desc}>
         <Text>By signing in you are agreeing</Text>
         <View style={styles.textPolicy}>
@@ -56,6 +56,11 @@ const LoginScreen = () => {
         <View style={styles.formGroup}>
           <Icon style={styles.formIcon} name="lock" size={30} />
           <TextInput style={styles.formInput} placeholder="Password" secureTextEntry={true} onChangeText={(e) => setPassword(e)}></TextInput>
+          {checkPassword ? <Text style={styles.formError}>Password incorrect!</Text> : ''}
+        </View>
+        <View style={styles.formGroup}>
+          <Icon style={styles.formIcon} name="lock" size={30} />
+          <TextInput style={styles.formInput} placeholder="Password-re" secureTextEntry={true} onChangeText={(e) => setPassword(e)}></TextInput>
           {checkPassword ? <Text style={styles.formError}>Password incorrect!</Text> : ''}
         </View>
         <View style={styles.formGroup}>
@@ -169,4 +174,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default LoginScreen;
+export default RegisterScreen;

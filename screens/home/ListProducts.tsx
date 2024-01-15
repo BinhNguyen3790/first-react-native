@@ -67,7 +67,8 @@ const ListProducts = () => {
         <FlatList scrollEnabled={false} numColumns={2} columnWrapperStyle={styles.container} data={games} renderItem={({ item }: any) =>
           <View style={styles.item}>
             <View style={styles.content}>
-              <Image style={styles.itemImg} source={{ uri: item.avatar }} />
+              {/* <Image style={styles.itemImg} source={{ uri: item.avatar }} /> */}
+              <Image style={styles.itemImg} source={require("../../assets/imgs/pic_girl.jpg")} />
               <View style={styles.text}><Text style={styles.textTxt}>{item.name}</Text></View>
             </View>
           </View>

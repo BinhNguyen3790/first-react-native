@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AccountStack from './screens/stacks/AccountStack';
 
 const Home = ({ navigation }: any) => {
   return (
@@ -81,9 +82,9 @@ const App = () => {
           headerShown: false
         })
       }>
-        <Tab.Screen name="Account" component={AccountScreen}></Tab.Screen>
         <Tab.Screen name="Home" component={HomeScreen}></Tab.Screen>
-        <Tab.Screen name="Login" component={LoginScreen}></Tab.Screen>
+        <Tab.Screen name="Account" component={AccountStack}></Tab.Screen>
+        {/* <Tab.Screen name="Login" component={LoginScreen}></Tab.Screen> */}
         <Tab.Screen name="List" component={SectionListView}></Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
