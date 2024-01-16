@@ -9,7 +9,7 @@ const Account = ({ navigation }: any) => {
         <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Login')}>
           <Text>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Register')}>
           <Text>Register</Text>
         </TouchableOpacity>
       </View>
