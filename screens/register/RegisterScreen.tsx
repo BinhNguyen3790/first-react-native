@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Alert, Image, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
 import CheckBox from '@react-native-community/checkbox';
-const RegisterScreen = () => {
+import axios from 'axios';
+const RegisterScreen = ({ navigation }: any) => {
   const [remember, setRemember] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,29 +11,41 @@ const RegisterScreen = () => {
   const [checkPassword, setCheckPassword] = useState(false);
   const onSubmit = () => {
     let dataLogin = {
-      _email: email,
-      _password: password,
-      _remember: remember
+      email: email,
+      password: password,
+      // remember: remember
     }
+    axios.post("https://60b98fee80400f00177b68e5.mockapi.io/api/account", dataLogin)
+      .then((res) => {
+        console.log(res);
+        if (res.data) {
+          Alert.alert("let go to login")
+          navigation.navigate('Login')
+        }
+      })
+      .catch((err) => {
+        console.log(err);
 
-    const regexEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-    console.log(regexEmail.test(email));
+      })
 
-    if (regexEmail.test(email)) {
-      setCheckEmail(false);
-    } else {
-      setCheckEmail(true);
-    }
+    // const regexEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    // console.log(regexEmail.test(email));
 
-    if (password !== '') {
-      setCheckPassword(false);
-    } else {
-      setCheckPassword(true);
-    }
+    // if (regexEmail.test(email)) {
+    //   setCheckEmail(false);
+    // } else {
+    //   setCheckEmail(true);
+    // }
 
-    if (regexEmail.test(email) && password !== '') {
-      console.log(dataLogin);
-    }
+    // if (password !== '') {
+    //   setCheckPassword(false);
+    // } else {
+    //   setCheckPassword(true);
+    // }
+
+    // if (regexEmail.test(email) && password !== '') {
+    //   console.log(dataLogin);
+    // }
   }
   return (
     <SafeAreaView style={styles.container}>
